@@ -41,7 +41,8 @@ import math
 import time
 
 import transformers
-from transformers.file_utils import is_datasets_available, is_in_notebook, is_torch_tpu_available
+from transformers.file_utils import is_datasets_available, is_in_notebook
+from transformers.utils.import_utils import is_torch_tpu_available
 from transformers.integrations import (
     is_comet_available,
     is_optuna_available,
@@ -453,6 +454,7 @@ class Trainer(LinearHeadTrainer):
             model = torch.nn.DataParallel(model)
 
         # Distributed training (should be after apex fp16 initialization)
+        
         if self.args.local_rank != -1:
             model = torch.nn.parallel.DistributedDataParallel(
                 model,
@@ -460,6 +462,7 @@ class Trainer(LinearHeadTrainer):
                 output_device=self.args.local_rank,
                 find_unused_parameters=True,
             )
+        
 
         # Train
         if transformers.is_torch_tpu_available():

@@ -1,5 +1,7 @@
 # MeZO: Fine-Tuning Language Models with Just Forward Passes
 
+## pip install -U torch, accelerate, transformers==4.28, torchvision
+
 This is the implementation for the paper [Fine-Tuning Language Models with Just Forward Passes](https://arxiv.org/pdf/2305.17333.pdf). 
 In this paper we propose a memory-efficient zeroth-order optimizer (**MeZO**),
 adapting the classical zeroth-order SGD method to operate in-place, thereby fine-tuning language models (LMs) with the same memory footprint as inference.
